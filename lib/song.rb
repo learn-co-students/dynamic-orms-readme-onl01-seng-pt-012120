@@ -8,7 +8,7 @@ class Song
     self.to_s.downcase.pluralize
   end
 
-  # determin column names of said table in db
+  # determine column names of said table in db
   def self.column_names
     DB[:conn].results_as_hash = true
 
@@ -23,11 +23,12 @@ class Song
   end
 
   # sets attr_accessor(s) for class
-  # based off column names 
+  # based off column names
   self.column_names.each do |col_name|
     attr_accessor col_name.to_sym
   end
 
+  # set attribute values via metaprogramming
   def initialize(options={})
     options.each do |property, value|
       self.send("#{property}=", value)
@@ -53,6 +54,7 @@ class Song
   end
 
   def col_names_for_insert
+    binding.pry
     self.class.column_names.delete_if {|col| col == "id"}.join(", ")
   end
 
