@@ -3,11 +3,12 @@ require 'active_support/inflector'
 
 class Song
 
-
+  # determine table name that's already in db
   def self.table_name
     self.to_s.downcase.pluralize
   end
 
+  # determin column names of said table in db
   def self.column_names
     DB[:conn].results_as_hash = true
 
@@ -21,6 +22,8 @@ class Song
     column_names.compact
   end
 
+  # sets attr_accessor(s) for class
+  # based off column names 
   self.column_names.each do |col_name|
     attr_accessor col_name.to_sym
   end
@@ -59,6 +62,3 @@ class Song
   end
 
 end
-
-
-
