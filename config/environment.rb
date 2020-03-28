@@ -9,8 +9,14 @@ sql = <<-SQL
   id INTEGER PRIMARY KEY,
   name TEXT,
   album TEXT
-  )
+  );
+
+ALTER TABLE songs
+ADD artist TEXT;
 SQL
 
 DB[:conn].execute(sql)
 DB[:conn].results_as_hash = true
+
+
+
