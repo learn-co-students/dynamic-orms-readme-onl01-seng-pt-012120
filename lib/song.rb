@@ -20,6 +20,7 @@ class Song
     end
     column_names.compact
   end
+  #change made for submit
 
   self.column_names.each do |col_name|
     attr_accessor col_name.to_sym
